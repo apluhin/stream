@@ -10,14 +10,14 @@ public class Stream<T> {
 
     private List<T> list;
 
-    public static <T> Stream<T> of(List<T> put) {
+    public static <T> Stream<T> of(List<? extends T> put) {
         Stream<T> stream = new Stream<>();
         stream.list = new ArrayList<>(put);
         return stream;
     }
 
 
-    public Stream<T> filter(Predicate<? super T> predicate) {
+    public Stream<T> filter(Predicate<T> predicate) {
         Iterator<T> coll = list.iterator();
         while (coll.hasNext()) {
             if (!predicate.test(coll.next())) {
